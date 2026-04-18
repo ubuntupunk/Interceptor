@@ -1,0 +1,5 @@
+interceptor (0.7.0-1) noble; urgency=medium
+
+  * Initial Ubuntu package for Interceptor v0.7.0
+
+ -- Hacker Valley Media <support@hacker-valley-media.com>  Fri, 18 Apr 2026 17:15:00 +0200

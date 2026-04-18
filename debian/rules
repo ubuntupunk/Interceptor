@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	# Build the project
+	bash scripts/build.sh
+
+override_dh_auto_install:
+	# Install binaries
+	install -D -m 755 dist/interceptor $(CURDIR)/debian/interceptor/usr/bin/interceptor
+	install -D -m 755 daemon/interceptor-daemon $(CURDIR)/debian/interceptor/usr/lib/interceptor/interceptor-daemon
+	
+	# Install extension files
+	install -d $(CURDIR)/debian/interceptor/usr/share/interceptor/extension
+	cp -r extension/dist/* $(CURDIR)/debian/interceptor/usr/share/interceptor/extension/
+	
+	# Install documentation
+	install -D -m 644 README.md $(CURDIR)/debian/interceptor/usr/share/doc/interceptor/README.md
+	install -D -m 644 CLAUDE.md $(CURDIR)/debian/interceptor/usr/share/doc/interceptor/CLAUDE.md

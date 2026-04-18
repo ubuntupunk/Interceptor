@@ -1,0 +1,15 @@
+Source: interceptor
+Section: utils
+Priority: optional
+Maintainer: Hacker Valley Media <support@hacker-valley-media.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://github.com/Hacker-Valley-Media/Interceptor
+
+Package: interceptor
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Browser control CLI for AI agents
+ Interceptor is a browser tool that gives AI agents direct control over web browsers
+ without using CDP or other detection-prone protocols. It provides structured access
+ to DOM elements, network traffic capture, and workflow automation capabilities.

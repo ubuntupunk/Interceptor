@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+#DEBHELPER#
+
+# Set up native messaging host for Chrome/Chromium
+HOST_FILE="/usr/lib/interceptor/com.interceptor.host.json"
+if [ -f "$HOST_FILE" ]; then
+    # Create symlink in Chrome's native messaging hosts directory
+    mkdir -p /etc/chromium/native-messaging-hosts
+    ln -sf "$HOST_FILE" /etc/chromium/native-messaging-hosts/com.interceptor.host.json
+    
+    # Create symlink for Google Chrome
+    mkdir -p /etc/opt/chrome/native-messaging-hosts
+    ln -sf "$HOST_FILE" /etc/opt/chrome/native-messaging-hosts/com.interceptor.host.json
+fi
+
+# Set up daemon socket directory
+mkdir -p /var/run/interceptor
+chmod 755 /var/run/interceptor
+
+echo "Interceptor installed. Make sure to:"
+echo "1. Load the extension in Chrome/Chromium from /usr/share/interceptor/extension/"
+echo "2. The daemon will auto-start on first use"
