@@ -1,18 +1,4 @@
-/**
- * cli/commands/macos.ts — interceptor macos <subcommand>
- *
- * Parses `interceptor macos` subcommands into macos_ prefixed action objects
- * that get routed to the native bridge via the daemon.
- */
 
-import { sendCommand, sendCommandWs, type DaemonResponse } from "../transport"
-
-type Action = { type: string; [key: string]: unknown }
-type Result = { success: boolean; error?: string; data?: unknown }
-
-function unwrap(resp: DaemonResponse): Result {
-  return resp.result
-}
 
 async function send(
   action: Action,

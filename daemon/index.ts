@@ -817,22 +817,7 @@ try {
             continue
           }
 
-          // Route macos_ actions to the native bridge
-          if (action?.type?.startsWith("macos_")) {
-            if (bridgeSocket) {
-              sendToBridge(id, action, socket, actionType)
-            } else {
-              // Try to connect (async), respond when done
-              connectBridge().then((connected) => {
-                if (connected && bridgeSocket) {
-                  sendToBridge(id, action, socket, actionType)
-                } else {
-                  socketWriteFramed(socket, JSON.stringify({ id, result: { success: false, error: "interceptor-bridge not running. Start it with: interceptor-bridge or grant Accessibility permission." } }))
-                }
-              })
-            }
-            continue
-          }
+          // Removed macOS bridge support for Linux-only build
 
           const timer = setTimeout(() => {
             pendingRequests.delete(id)

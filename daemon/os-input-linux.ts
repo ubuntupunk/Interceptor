@@ -1,28 +1,43 @@
-// Linux implementation - stub for now since we don't need OS-level input on Linux
-// The daemon communicates with the browser extension via native messaging
+// Linux implementation - simplified for Linux-only build
+// Browser handles all input, so these are no-ops
 
-export function osClick(x: number, y: number, button = 0): void {
+export async function osClick(
+  screenX: number,
+  screenY: number,
+  button: "left" | "right" = "left",
+  clickCount: number = 1
+): Promise<{ success: boolean; error?: string }> {
   // No-op on Linux - browser handles clicks
-  console.log(`osClick(${x}, ${y}, ${button}) - no-op on Linux`)
+  console.log(`osClick(${screenX}, ${screenY}, ${button}, ${clickCount}) - no-op on Linux`)
+  return { success: true }
 }
 
-export function osKey(key: string, down: boolean): void {
+export async function osKey(
+  key: string,
+  modifiers: string[] = []
+): Promise<{ success: boolean; error?: string }> {
   // No-op on Linux - browser handles keyboard
-  console.log(`osKey(${key}, ${down}) - no-op on Linux`)
+  console.log(`osKey(${key}, ${modifiers}) - no-op on Linux`)
+  return { success: true }
 }
 
-export function osType(text: string): void {
+export async function osType(text: string): Promise<{ success: boolean; error?: string }> {
   // No-op on Linux - browser handles typing
   console.log(`osType(${text}) - no-op on Linux`)
+  return { success: true }
 }
 
-export function osMove(x: number, y: number): void {
+export async function osMove(
+  points: Array<{ x: number; y: number }>,
+  durationMs: number = 100
+): Promise<{ success: boolean; error?: string }> {
   // No-op on Linux - browser handles mouse movement
-  console.log(`osMove(${x}, ${y}) - no-op on Linux`)
+  console.log(`osMove(${JSON.stringify(points)}, ${durationMs}) - no-op on Linux`)
+  return { success: true }
 }
 
 export function generateBezierPath(startX: number, startY: number, endX: number, endY: number): Array<{x: number, y: number}> {
-  // Simple linear path for now
+  // Simple linear path
   return [{x: startX, y: startY}, {x: endX, y: endY}]
 }
 
