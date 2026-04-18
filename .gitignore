@@ -15,3 +15,19 @@ signing.env
 notarization.env
 interceptor-bridge/.build/
 keys/
+
+# Debian packaging artifacts
+*.deb
+pkg-debian/
+debian/*.deb
+debian/pkg-*/
+
+# TypeScript build cache
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Build directories and artifacts
+build/
+*.dmg
+*.pkg
+*.tar.gz
