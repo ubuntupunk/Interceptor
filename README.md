@@ -14,6 +14,8 @@ It intercepts the DOM tree so your agent can read what's on the page. It interce
 
 And now it does the same thing for macOS itself. `interceptor macos` gives agents structured accessibility trees, OS-level input, real-time speech recognition, on-device vision, sound classification, and system-wide event monitoring for native applications. The same CLI, the same ref system, the same teach-and-replay pattern -- extended from browser tabs to the entire desktop.
 
+Interceptor also supports Linux! Ubuntu users can install native Debian packages for full browser automation capabilities.
+
 No detection. No separate instance. No starting from zero. Your browser, your apps, your workflows -- intercepted and handed to the agent.
 
 **Interceptor uses extensive browser permissions and gives the agent real autonomy and agency. This isn't an assistant — it's an agent. It can act just like you. Use at your own risk and have a lot of fun!** 🔥
@@ -150,6 +152,43 @@ interceptor macos trust
 | Microphone | No | Speech recognition, voice activity detection |
 
 Grant permissions in: System Settings → Privacy & Security → [Permission] → interceptor-bridge
+
+### Option 3: Ubuntu/Debian Linux
+
+Interceptor now supports Linux with native Debian packaging! Install the `.deb` package for Ubuntu 24.04 and newer.
+
+#### Download and Install
+
+1. Download the latest Linux release: **[Interceptor for Ubuntu](https://github.com/ubuntupunk/Interceptor/releases/latest/download/interceptor_0.7.0-1_amd64.deb)**
+2. Install with:
+   ```bash
+   sudo dpkg -i interceptor_0.7.0-1_amd64.deb
+   ```
+
+#### What Gets Installed
+
+- `interceptor` CLI → `/usr/bin/interceptor`
+- Background daemon → `/usr/bin/interceptor-daemon`
+- Chrome extension → `/usr/share/interceptor/extension/`
+- Native messaging config → `/usr/lib/interceptor/com.interceptor.host.json`
+
+#### Setup
+
+After installation:
+1. Load the extension in Chrome/Chromium from `/usr/share/interceptor/extension/`
+2. The daemon auto-starts on first use
+3. Native messaging is automatically configured
+
+#### Build from Source (Linux)
+
+```bash
+git clone https://github.com/ubuntupunk/Interceptor.git
+cd Interceptor
+git checkout debian  # Linux packaging branch
+bash scripts/build.sh
+cd debian && ./build-package.sh
+sudo dpkg -i ../interceptor_0.7.0-1_amd64.deb
+```
 
 ---
 
