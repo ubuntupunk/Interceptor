@@ -10,12 +10,16 @@ override_dh_auto_build:
 override_dh_auto_install:
 	# Install binaries
 	install -D -m 755 dist/interceptor $(CURDIR)/debian/interceptor/usr/bin/interceptor
-	install -D -m 755 daemon/interceptor-daemon $(CURDIR)/debian/interceptor/usr/lib/interceptor/interceptor-daemon
-	
+	install -D -m 755 daemon/interceptor-daemon $(CURDIR)/debian/interceptor/usr/bin/interceptor-daemon
+
 	# Install extension files
 	install -d $(CURDIR)/debian/interceptor/usr/share/interceptor/extension
 	cp -r extension/dist/* $(CURDIR)/debian/interceptor/usr/share/interceptor/extension/
-	
+
+	# Install native messaging host config
+	install -d $(CURDIR)/debian/interceptor/usr/lib/interceptor
+	install -D -m 644 daemon/com.interceptor.host.json $(CURDIR)/debian/interceptor/usr/lib/interceptor/com.interceptor.host.json
+
 	# Install documentation
 	install -D -m 644 README.md $(CURDIR)/debian/interceptor/usr/share/doc/interceptor/README.md
 	install -D -m 644 CLAUDE.md $(CURDIR)/debian/interceptor/usr/share/doc/interceptor/CLAUDE.md

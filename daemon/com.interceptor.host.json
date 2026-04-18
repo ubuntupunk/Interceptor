@@ -1,7 +1,7 @@
 {
   "name": "com.interceptor.host",
   "description": "Interceptor daemon bridge",
-  "path": "/usr/lib/interceptor/interceptor-daemon",
+  "path": "/usr/bin/interceptor-daemon",
   "type": "stdio",
   "allowed_origins": [
     "chrome-extension://hkjbaciefhhgekldhncknbjkofbpenng/",
